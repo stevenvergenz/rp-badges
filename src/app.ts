@@ -1,4 +1,5 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
+import { instanceList } from './index';
 import { Database, Event as DbEvent, User as DbUser, PresentationMode } from './db';
 import { MenuManager } from './menu';
 
@@ -17,14 +18,11 @@ export default class App {
 	private userAnchors = new Map<MRE.Guid, UserAnchor>();
 
 	public constructor(public context: MRE.Context, public baseUrl: string) {
+		instanceList.push(this);
 		this.db = new Database();
 
-		process.on('SIGTERM', () => {
-			this.db.shutdown();
-			process.exit(0);
-		});
-
 		this.context.onStarted(() => this.onStarted().catch(err => MRE.log.error('app', err)));
+		this.context.onStopped(() => this.shutdown());
 		this.context.onUserJoined(user => this.onUserJoined(user).catch(err => MRE.log.error('app', err)));
 	}
 
@@ -57,6 +55,11 @@ export default class App {
 			};
 			this.badgeDefs.set(event.id, badgeTemplate);
 		}
+	}
+
+	public shutdown() {
+		instanceList.splice(instanceList.findIndex(app => app === this), 1);
+		this.db.shutdown();
 	}
 
 	private async onUserJoined(user: MRE.User) {
