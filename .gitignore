@@ -1,0 +1,6 @@
+sdk-path-config.json
+node_modules
+built
+*.tsbuildinfo
+.env
+*.blend1

@@ -1,0 +1,33 @@
+version: "3"
+services:
+  www:
+    volumes:
+      - /opt/app/:/opt/app/
+    ports:
+      - "3901:3901"
+    environment:
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: rp-badges
+    build:
+      context: .
+    networks:
+      - internal
+    depends_on:
+      - "db"
+  db:
+    image: postgres:12.2-alpine
+    volumes:
+      - postgres:/var/lib/pgdata
+    networks:
+      - internal
+    environment:
+      PGDATA: /var/lib/pgdata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rp-badges
+volumes:
+  postgres:
+networks:
+  internal:

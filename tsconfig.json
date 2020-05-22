@@ -1,0 +1,22 @@
+{
+  "include": [
+    "./src"
+  ],
+  "compilerOptions": {
+    "outDir": "./built",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+      "es2017"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "moduleResolution": "node"
+  }
+}

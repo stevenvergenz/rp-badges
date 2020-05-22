@@ -1,0 +1,25 @@
+{
+  "name": "rocket-party-badges",
+  "version": "1.0.0",
+  "description": "",
+  "main": "built/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "node ./built/index.js"
+  },
+  "author": "Steven Vergenz",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/mixed-reality-extension-sdk": "^0.18.0",
+    "@types/pg": "^7.14.3",
+    "node-fetch": "^2.6.0",
+    "pg": "^8.1.0",
+    "pg-format": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "@types/pg-format": "^1.0.0",
+    "gltf-pipeline": "^2.1.10",
+    "typescript": "^3.7.5"
+  }
+}
