@@ -24,6 +24,7 @@ export default class App {
 		this.context.onStarted(() => this.onStarted().catch(err => MRE.log.error('app', err)));
 		this.context.onStopped(() => this.shutdown());
 		this.context.onUserJoined(user => this.onUserJoined(user).catch(err => MRE.log.error('app', err)));
+		this.context.onUserLeft(user => this.onUserLeft(user));
 	}
 
 	private async onStarted() {
@@ -66,7 +67,7 @@ export default class App {
 		const dbUser = await this.db.getUser(user.id);
 
 		// always attach the menu
-		this.menus.attachToUser(user.id, dbUser);
+		await this.menus.attachToUser(user.id, dbUser);
 
 		// make sure user is participating
 		if (!dbUser) { return; }
@@ -75,6 +76,14 @@ export default class App {
 		
 		// attach badges
 		await this.displayBadges(user.id, dbUser);
+	}
+
+	private onUserLeft(user: MRE.User) {
+		const anchor = this.userAnchors.get(user.id);
+		if (anchor) {
+			anchor.anchor.destroy();
+			this.userAnchors.delete(user.id);
+		}
 	}
 
 	public async awardBadge(user: MRE.User) {

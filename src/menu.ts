@@ -412,4 +412,10 @@ export class MenuManager {
 		await this.app.db.updateUser(menuState.dbUser);
 		await this.app.displayBadges(user.id, menuState.dbUser);
 	}
+
+	public detachFromUser(user: MRE.User) {
+		const menuState = this.menuStates.get(user.id);
+		menuState.menuActor.destroy();
+		this.menuStates.delete(user.id);
+	}
 }

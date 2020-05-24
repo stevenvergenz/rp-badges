@@ -10,7 +10,7 @@
   "author": "Steven Vergenz",
   "license": "MIT",
   "dependencies": {
-    "@microsoft/mixed-reality-extension-sdk": "^0.18.0",
+    "@microsoft/mixed-reality-extension-sdk": "file:microsoft-mixed-reality-extension-sdk-0.18.1.tgz",
     "@types/pg": "^7.14.3",
     "node-fetch": "^2.6.0",
     "pg": "^8.1.0",

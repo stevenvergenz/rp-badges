@@ -15,7 +15,7 @@ server.adapter.onConnection(context => new App(context, server.baseUrl));
 export const instanceList: Array<App> = [];
 process.on('SIGTERM', () => {
 	for (const app of instanceList) {
-		app.db.shutdown();
+		app.shutdown();
 	}
 	process.exit(0);
 });
