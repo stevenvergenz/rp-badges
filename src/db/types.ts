@@ -22,7 +22,7 @@ export class User {
 
 export class Event {
 	private static readonly starlinkRegex = /starlink/iu;
-	private static readonly shortNameRegex = /^Rocket Party: (.*)$/u;
+	private static readonly shortNameRegex = /^(?:\[SCRUBBED\] )?(?:Rocket Party: )?(.*)$/u;
 
 	public constructor(
 		public id: string, 

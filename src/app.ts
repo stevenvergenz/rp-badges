@@ -145,7 +145,12 @@ export default class App {
 		// filter out duplicate starlink launches, limit to 20 badges
 		const firstStarlinkIndex = joinedEvents.findIndex(evt => evt.isStarlink());
 		const displayedEvents = joinedEvents
-			.filter((evt, i) => !evt.isStarlink() || i === firstStarlinkIndex)
+			.filter((evt, i, arr) => {
+				// is not an old starlink mission
+				return (!evt.isStarlink() || i === firstStarlinkIndex)
+					// and is not a scrubbed version of a more recent event
+					&& !arr.slice(0, i).find(newerEvt => newerEvt.shortName === evt.shortName);
+			})
 			.slice(0, 20);
 		MRE.log.info('app', `Applying ${displayedEvents.length} badges to ${dbUser.name}`);
 
