@@ -106,7 +106,7 @@ export default class App {
 					userId: userId,
 					attachPoint: 'spine-top'
 				},
-				transform: { local: { position: { y: 0.07, z: 0.13 }}}
+				transform: { local: { position: { y: 0, z: 0.13 }}}
 			}});
 			const label = MRE.Actor.Create(this.context, { actor: {
 				name: "label",
@@ -138,7 +138,7 @@ export default class App {
 		// get all events this user attended
 		const eventsLookup = (await this.db.getEvents())
 			.reduce((map, event) => map.set(event.id, event), new Map<string, DbEvent>());
-		//const joinedEvents = [...eventsLookup.values()];
+		// const joinedEvents = [...eventsLookup.values()];
 		const joinedEvents = (await this.db.getJoinings(dbUser.id))
 			.map(j => eventsLookup.get(j.event_id));
 
