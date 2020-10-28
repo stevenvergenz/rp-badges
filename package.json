@@ -8,11 +8,11 @@
     "start": "node ./built/index.js"
   },
   "author": "Steven Vergenz",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@microsoft/mixed-reality-extension-sdk": "file:microsoft-mixed-reality-extension-sdk-0.18.1.tgz",
+    "@microsoft/mixed-reality-extension-sdk": "^0.20.0",
     "@types/pg": "^7.14.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pg": "^8.1.0",
     "pg-format": "^1.0.4"
   },

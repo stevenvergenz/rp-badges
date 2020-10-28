@@ -1,0 +1,6 @@
+{
+    "name": "Rocket Party Badges",
+    "description": "Earn flight patches for attending rocket launches in AltspaceVR",
+    "license": "GPL-3.0-or-later",
+    "optionalPermissions": ["user-interaction", "user-tracking"]
+}
